@@ -1,0 +1,97 @@
+{{ define "main" }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <script src="/static/js/shake.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://code.jquery.com/mobile/git/jquery.mobile-git.min.js"></script>
+    <title>_</title>
+</head>
+<body>
+<div id="mainc">
+<div id="ar" class="lng" dir="rtl"><span></span><div id="#artt" class="tt"></div></div>
+<div id="eg" class="lng" dir="rtl"><span></span><div id="#egtt" class="tt"></div></div>
+<div id="en" class="lng"><span></span></div>
+<script>
+    let o2 = {};
+
+    function showEither() {
+        if(o2.eg) {
+            $("#eg").show();
+        } else if (o2.ar) {
+            $("#ar").show();
+        }
+    }
+
+    $(function() {
+        const o = {{.Js}};
+        const n = {{.N}};
+        let timer = null;
+        let click = 0;
+        o2 = {"ar": false, "eg": false};
+
+        let lng = $("div.lng")
+
+        for(k of ["ar", "eg"]) {
+            if (k in o && o[k].length > 0) {
+                var d = $("#" + k + " span");
+                d.html(o[k]);
+                d.attr("title", o[k + "-tr"])
+                $("#" + k + " tt").html(o[k + "-tr"])
+                o2[k] = true;
+            }
+        }
+        $("#en span").html(o["en"]);
+
+        showEither();
+
+        $("#ar, #eg, #ar span, #eg span").on("swipe", function(e) {
+            let n = $(this)[0].nodeName
+            let v = n === "SPAN" ? $(this).parent() : $(this);
+            let id = v[0].id
+            $("#" + id + "tt").show()
+        })
+
+        lng.on("tap", function(e) {
+            click++;
+            let id = this.id;
+            if (click === 1) {
+                timer = setTimeout(function() {
+                    if(o2.ar & o2.eg) {
+                        lng.hide();
+                        $("#" + (id === "eg" ? "ar" : "eg")).show();
+                    }
+                    click = 0
+                }, 300)
+            } else {
+                clearTimeout(timer);
+                click = 0;
+                lng.hide()
+                if(id === "en") {
+                    showEither()
+                } else {
+                    $("#en").show()
+                }
+                e.preventDefault();
+            }
+        })
+
+        $(".tt").click(function(e) {
+            $(this).hide()
+        })
+
+        $(lng).dblclick(function(e) {
+            e.preventDefault();
+        })
+
+        window.addEventListener("deviceshake", function () {
+            location.reload()
+        }, false);
+    })
+</script>
+</div>
+</body>
+</html>
+{{ end }}

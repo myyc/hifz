@@ -1,0 +1,42 @@
+@import url(//fonts.googleapis.com/earlyaccess/notokufiarabic.css);
+@import url(//fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic&subset=latin,latin-ext);
+
+body {
+    font-family: "Noto Kufi Arabic", "Noto Sans", sans-serif;
+    background-color: forestgreen;
+    color: white;
+}
+
+#mainc {
+    width: 960px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
+    line-height: 100vh;
+}
+
+.lng {
+    font-size: 60pt;
+    font-weight: bold;
+    display: none;
+    user-select: none;
+}
+
+.lng span {
+    cursor: pointer;
+}
+
+#eg {
+    color: wheat;
+}
+
+.tt {
+    display: none;
+    font-size: 40pt;
+    color: black;
+}
+
+.ui-loader {
+    display: none;
+}
