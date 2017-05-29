@@ -5,12 +5,12 @@ import (
    "net/http"
    "html/template"
    "io"
-   mw "github.com/labstack/echo/middleware"
    "fmt"
    "flag"
    "os"
    "encoding/json"
    "math/rand"
+   mw "github.com/labstack/echo/middleware"
    "github.com/labstack/gommon/log"
    "strconv"
 )
@@ -64,6 +64,8 @@ func main() {
    flag.IntVar(&PORT, "port", PORT, "server port")
    flag.StringVar(&CERT_PATH, "tls-cert", CERT_PATH, "TLS certificate (.pem) location")
    flag.StringVar(&KEY_PATH, "tls-key", KEY_PATH, "TLS key (.pem) location")
+
+   flag.Parse()
 
    e := echo.New()
    e.Use(mw.Logger())
