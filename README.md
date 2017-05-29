@@ -1,7 +1,7 @@
 حفژ
 ===
 
-A stupid webapp with Arabic flashcards scrapred from [this website](http://arabic.desert-sky.net/vocab.html).
+A stupid webapp with Arabic flashcards scraped from [this website](http://arabic.desert-sky.net/vocab.html).
 
 ```
 $ go get github.com/labstack/echo
