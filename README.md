@@ -1,4 +1,4 @@
-حفژ
+حفظ
 ===
 
 A stupid webapp with Arabic flashcards scraped from [this website](http://arabic.desert-sky.net/vocab.html).
